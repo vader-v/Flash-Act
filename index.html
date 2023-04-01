@@ -4,10 +4,47 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script defer src=""></script>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <link rel="stylesheet" href="./css/style.css">
+    <script defer src="./js/app.js"></script>
+    <link 
+    id="favicon"
+    rel="icon"
+    href="./Assets/Images/Meta_Knights-removebg-preview.png"
+    type="img.jpg"
+    sizes="32x32"
+    >
     <title>Flash-Act</title>
 </head>
 <body>
-    
+<main>
+    <h1 class="animate__animated animate__bounce">Flash-Act</h1>
+        <div class="battle-stage">
+            <h2 id="startRoundTimer">Timer</h2>
+        <div class="player player1">
+            <img src="./Assets/Images/Meta_Knights-removebg-preview.png" alt="Meta_Knights-removebg-preview">
+            <div class=""></div>
+            <div class="player-name">Player 1</div>
+            <div class="player-score">0</div>
+        </div>
+            <div class="round-number">Round 1!</div>
+            <div class="player player2">
+                <div class="player-name">Player 2</div>
+                <div class="player-score">0</div>
+            </div>
+            <div id="scene">
+                <button id="button">
+                Start game
+                </button>
+                <button id="buttonStart">
+                Next round
+                </button>
+            </div>
+        </div>
+    </main>
 </body>
+
 </html>
