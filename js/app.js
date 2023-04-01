@@ -1,67 +1,91 @@
-/*------ western/ swordsman game musical chairs
+app.js /*------ western/ swordsman game musical chairs ------*/
 
-  user pushes a button to start a count down to prepare the song to play, the song plays, the song stops exclaiming for the user to attack the enemy player...
+/*-------------------------------- Constants --------------------------------*/
 
-  two inputs, one kill, one win, one loss....
+let player1Score = 0
+let player2Score = 0
+//have to set to 1 for the if else statement to check for point distr.
+let currentPlayer = 1
 
-  song plays based on a random number with a minimum value and a maximum value
-  letting the player input a keyboard press upon the song finishing, an icon will flash on screen to say "draw" if the audio is an issue.
-  if the player draws before the icon is displayed they get penalized with a loss.
-  the first player to react to the icon displaying will be the winner.
-  "stopPlaying" will have to call the image to invoke the function to allow a player input
+// add new audio obj
 
-  add event listener to button with id thats off until the song stops
-  when song finishes calculate players reaction time based on the input time and the "endTime()" for the song 
-  log user input time
-  log sound end time
-  log the difference between the two, disable the button show the winner and log one win one loss as you do
-  !!change song!!
-  repeat core game mechanics until one player gains 3 wins (best out of 5)
+/*---------------------------- Variables (state) ----------------------------*/
 
-  Math.abs() would ensure a positive number (mdn says so) since the user could input before or after the songs end so its necessary to discern a positive difference
-  ROUND ONE
-  game start button pops up
-    round start countdown 5 4 2 3 6 7 8 1 9 10 0
-      run math to determine song 2 length
-      song2 starts
-    player input allowed
-    song2 stops
-    wait for both player input
-  round end
-    calculate diff
-    calculate winner
-    display winner
-  next round\
-  possibly change character design/background per round (maybe too much work)
-  game start button pops up
-  round start countdown 5 4 2 3 6 7 8 1 9 10 0
-    run math to determine song 2 length
-  song2 starts
-    player input allowed
-  song2 stops
-    wait for both player input
-  round end
-    calculate diff
-    calculate winner
-    display winner
+let startTime
 
-  next round\
-  possibly change character design/background per round (maybe too much work)
-    game start button pops up
-    round start countdown 5 4 2 3 6 7 8 1 9 10 0
-      run math to determine song 2 length
-    song2 starts
-      player input allowed
-    song2 stops
-      wait for both player input
-    round end
-      calculate diff
-      calculate winner
-  display winner
-    if player wins = 3{
-    player ${player1 or 2} wins
+/*------------------------ Cached Element References ------------------------*/
+
+let header = document.querySelector('h1')
+let button = document.querySelector('button')
+
+
+/*----------------------------- Event Listeners -----------------------------*/
+
+button.addEventListener('click', makeAnimationGo)
+
+
+
+/*-------------------------------- Functions --------------------------------*/
+function initialize () {
+
 }
 
-if i wanted to be extremely hard on myself i would make a second input for each player to block the other players attack, saving their life maybe granting a point to the player that blocks, if two players block neither gets a point, idk about that though too clunky
-add source links for my friends songs i will be using at the end of the game once all rounds are over
- */
+function makeAnimationGo() {
+  // header.classList.remove('animate__animated ', "animate__bounce")
+  header.offsetHeight
+  header.classList.add('animate__animated', "animate__bounce")
+}
+function makeRandomNum(min, max) {
+  min = Math.ceil(3000)
+  max = Math.floor(1)
+  return parseInt(Math.random() * (max - min) + min);
+}
+
+console.log(makeRandomNum(0, 100))
+function playRandom() {
+  //declare if a round is started, if not ignore the timer
+  if (roundStart === true){
+      // declare random num 
+      let randomNumber = Math.floor(Math.random() * 1000) + 5000
+      //declare sound
+      let song = new Audio('Assets/Songs/Honey And Bleach.mp3')
+      // play song
+      song.play()
+      // record start time of song playing
+      let startTime = Date.now()
+      // declare end time 
+      let endTime
+      console.time('startRoundTimer')
+      // set the timeout function to pause based on random delay
+      setTimeout(function() {
+      song.pause()
+      endTime = Date.now()
+      let button = document.getElementById('button')
+      button.disabled = false
+      button.addEventListener('click', function() {
+      let userTime = Date.now()
+      let difference = Math.abs(endTime - userTime)
+      console.log(`Player input time: ${userTime}`)
+      console.log(`Song end time: ${endTime}`)
+      console.log(`Difference: ${difference}`)
+      button.disabled = true
+    })
+    document.body.style.backgroundColor = "black"
+    }, randomNumber) //generate rand time btw 5-15 secs
+    document.body.style.backgroundColor = "white"
+  } 
+
+}
+  
+  //pause song
+  //record end time
+  //get the button and enable click event
+  //record user input time
+  // calculate difference btw end time and user input time for both players seperately
+  //add the random delay function at end
+  // turn off user inputs after first input per player
+
+function playSong() {
+  
+}
+let countdownEl = document.getElementById('scene')
