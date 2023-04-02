@@ -1,17 +1,18 @@
-app.js /*------ western/ swordsman game musical chairs ------*/
+/*------ western/ swordsman game musical chairs ------*/
 
 /*-------------------------------- Constants --------------------------------*/
+const numRounds = 4
+const winningScore = 3
 
+/*---------------------------- Variables (state) ----------------------------*/
 let player1Score = 0
 let player2Score = 0
 //have to set to 1 for the if else statement to check for point distr.
-let currentPlayer = 1
+let globalTimer
+let roundStart = false
+let gameOver = false
+let startTime = 0
 
-// add new audio obj
-
-/*---------------------------- Variables (state) ----------------------------*/
-
-let startTime
 
 /*------------------------ Cached Element References ------------------------*/
 
