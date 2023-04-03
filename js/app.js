@@ -56,16 +56,23 @@ function startRound() {
   playRandom()
   endGame()
 }
-
-function startTimer() {
-  // check for active timer intv
-  if (timerIntervalId) {
-    seconds = 0
-    // if interval is active
-    clearInterval(timerIntervalId)
-    renderMessage()
-  }
+function endRound() {
+  // stop song disable player input
+  stopSong()
+  inputAllowed = false
+  clearTimeout(timerIntervalId)
+  //enable next round
+  roundStartButton.disabled = false
 }
+// function startTimer() {
+//   // check for active timer intv
+//   if (timerIntervalId) {
+//     seconds = 0
+//     // if interval is active
+//     clearInterval(timerIntervalId)
+//     renderMessage()
+//   }
+// }
 
 function renderMessage(){
   
@@ -90,29 +97,28 @@ function endGame(){
 }
 
 console.log(makeRandomNum(0, 100))
+
 function playRandom() {
-  //declare if a round is started, if not ignore the timer
+  // change song for the start of the round
   changeSong()
   if (round < 1){
-      // declare random num 
-      let randomNumber = Math.floor(Math.random() * 1000) + 5000
+    const attackButton = document.getElementById('attack')
+    // declare random num 
+      const randomNumber = Math.floor(Math.random() * 1000) + 5000
       //import sound from seperate js file
       // play song based on what round it is
+      let songStartTime, songEndTime
       round.song.play()
       // record start time of song playing
-      // let songStartTime = Date.now()
-      // declare end time 
-      let endTime
-      console.time('startRoundTimer')
+      songStartTime = Date.now()
       // set the timeout function to pause based on random delay
-      setTimeout(function() {
-      round.song.pause()
-      endTime = Date.now()
-      let attackButton = document.getElementById('attack')
-      attackButton.disabled = false
-      attackButton.addEventListener('click', function() {
-      let userTime = Date.now()
-      let difference = Math.abs(endTime - userTime)
+      setTimeout(() => {
+        round.song.pause()
+        songEndTime = Date.now()
+        attackButton.disabled = false
+        attackButton.addEventListener('click', () => {
+          const userTime = Date.now()
+          const difference = Math.abs(songEndTime - userTime)
       //this will print a longer number remember to cut off when displaying
       console.log(`Player input time: ${userTime}`)
       console.log(`Song end time: ${endTime}`)
