@@ -52,10 +52,15 @@ function startGame () {
 }
 
 function startRound() {
-  changeSong()
-  playRandom()
-  endGame()
+  playSong(round)
+  startRoundTimer.textContent = `Round ${round}`
+  setTimeout(()=> {
+    allowInput()
+    makeAnimationGo()
+    startTimer()
+  }, 5000)
 }
+
 function endRound() {
   // stop song disable player input
   stopSong()
@@ -64,6 +69,7 @@ function endRound() {
   //enable next round
   roundStartButton.disabled = false
 }
+
 // function startTimer() {
 //   // check for active timer intv
 //   if (timerIntervalId) {
@@ -74,23 +80,28 @@ function endRound() {
 //   }
 // }
 
+function allowInput() {
+  inputAllowed = true
+  button.disabled = false
+}
+
 function renderMessage(){
   
 }
+
 function changeSong() {
   songs.file.pause()
   playSong(round)
 }
+
 function makeAnimationGo() {
-  // header.classList.remove('animate__animated ', "animate__bounce")
-  header.offsetHeight
   header.classList.add('animate__animated', "animate__bounce")
 }
+
 function makeRandomNum(min, max) {
-  min = Math.ceil(3000)
-  max = Math.floor(1)
-  return parseInt(Math.random() * (max - min) + min);
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
 function endGame(){
 
   if (player1Score || player2Score === winningScore) { gameOver()
