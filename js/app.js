@@ -38,9 +38,6 @@ startButton.addEventListener("click", function(){
 roundStartButton.addEventListener("click", function(){
   startRound()
 })
-nextRoundButton.addEventListener("click", function() {
-  nextRound()
-})
 resetButton.addEventListener("click", function(){
   resetGame()
 })
@@ -48,6 +45,7 @@ resetButton.addEventListener("click", function(){
 /*-------------------------------- Functions --------------------------------*/
 function startGame () {
   startScreen.style.display = "none"
+  playRandom()
 
 }
 
@@ -71,14 +69,14 @@ function endGame(){
 console.log(makeRandomNum(0, 100))
 function playRandom() {
   //declare if a round is started, if not ignore the timer
-  if (roundStart === true){
+  if (round < 1){
       // declare random num 
       let randomNumber = Math.floor(Math.random() * 1000) + 5000
       //import sound from seperate js file
       // play song
       snow.play()
       // record start time of song playing
-      let songStartTime = Date.now()
+      // let songStartTime = Date.now()
       // declare end time 
       let endTime
       console.time('startRoundTimer')
@@ -87,8 +85,8 @@ function playRandom() {
       snow.pause()
       endTime = Date.now()
       let attackButton = document.getElementById('attack')
-      button.disabled = false
-      button.addEventListener('click', function() {
+      attackButton.disabled = false
+      attackButton.addEventListener('click', function() {
       let userTime = Date.now()
       let difference = Math.abs(endTime - userTime)
       console.log(`Player input time: ${userTime}`)
@@ -97,18 +95,56 @@ function playRandom() {
       button.disabled = true
     })
     // visual effect i want to implement very unsure of how this will work 
-    document.body.style.backgroundColor = "black"
+    // document.body.style.backgroundColor = "black"
+    //add the randomNumber delay function at end
     }, randomNumber) //generate rand time btw 5-15 secs
-    document.body.style.backgroundColor = "white"
-  } 
-
+    // document.body.style.backgroundColor = "white"
+  } else {
+    nextRound()
+  }
+console.log(randomNumber)
+console.log(difference)
 }
+function nextRound(){
+  if (round == 1){
+    let randomNumber = Math.floor(Math.random() * 1000) + 5000
+      //import sound from seperate js file
+      // play song
+      warField.play()
+      // record start time of song playing
+      // let songStartTime = Date.now()
+      // declare end time 
+      let endTime
+      console.time('startRoundTimer')
+      // set the timeout function to pause based on random delay
+      setTimeout(function() {
+      warField.pause()
+      endTime = Date.now()
+      let attackButton = document.getElementById('attack')
+      attackButton.disabled = false
+      attackButton.addEventListener('click', function() {
+      let userTime = Date.now()
+      let difference = Math.abs(endTime - userTime)
+      console.log(`Player input time: ${userTime}`)
+      console.log(`Song end time: ${endTime}`)
+      console.log(`Difference: ${difference}`)
+      button.disabled = true
+    })
+    // visual effect i want to implement very unsure of how this will work 
+    // document.body.style.backgroundColor = "black"
+    //add the randomNumber delay function at end
+    }, randomNumber) //generate rand time btw 5-15 secs
+    // document.body.style.backgroundColor = "white"
+  } else {
+    nextRound()
+  }
+}
+
   
   //pause song
   //record end time
   //get the button and enable click event
   //record user input time
   // calculate difference btw end time and user input time for both players seperately
-  //add the random delay function at end
   // turn off user inputs after first input per player
 

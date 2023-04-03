@@ -1,8 +1,8 @@
 main {
-  background-color: whitesmoke;
+  background-color: rgb(70, 69, 69);
 }
 body {
-  background-color: whitesmoke;
+  background-color: rgb(70, 69, 69);
 }
 .start-screen {
   display: flex;
