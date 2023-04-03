@@ -77,7 +77,10 @@ function endRound() {
 function renderMessage(){
   
 }
-
+function changeSong() {
+  songs.file.pause()
+  playSong(round)
+}
 function makeAnimationGo() {
   // header.classList.remove('animate__animated ', "animate__bounce")
   header.offsetHeight
@@ -121,7 +124,7 @@ function playRandom() {
           const difference = Math.abs(songEndTime - userTime)
       //this will print a longer number remember to cut off when displaying
       console.log(`Player input time: ${userTime}`)
-      console.log(`Song end time: ${endTime}`)
+      console.log(`Song end time: ${songEndTime}`)
       console.log(`Difference: ${difference}`)
       button.disabled = true
     })
