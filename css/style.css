@@ -1,0 +1,17 @@
+main {
+  background-color: whitesmoke;
+}
+body {
+  background-color: whitesmoke;
+}
+.start-screen {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  font-size: 2em;
+}
+.player {
+  display: flex;
+  flex-direction: row;
+}

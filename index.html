@@ -7,9 +7,8 @@
     <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-
     <link rel="stylesheet" href="./css/style.css">
-    <script defer src="./js/app.js"></script>
+    <script src="./js/app.js" type="module"></script>
     <link 
     id="favicon"
     rel="icon"
@@ -21,29 +20,39 @@
 </head>
 <body>
 <main>
-    <h1 class="animate__animated animate__bounce">Flash-Act</h1>
-        <div class="battle-stage">
+    <div id="start-screen">
+        <h1 class="animate__animated animate__bounce">Flash-Act</h1>
+        <div class="game-board">
             <h2 id="startRoundTimer">Timer</h2>
-        <div class="player player1">
-            <img src="./Assets/Images/Meta_Knights-removebg-preview.png" alt="Meta_Knights-removebg-preview">
-            <div class=""></div>
-            <div class="player-name">Player 1</div>
-            <div class="player-score">0</div>
-        </div>
+            <div class="player player1">
+                <img src="./Assets/Images/Meta_Knights-removebg-preview.png" alt="Meta_Knights-removebg-preview">
+                <div class="player-name">Player 1 </div>
+                
+                <div class="player-score"> Score: 0</div>
+            </div>
             <div class="round-number">Round 1!</div>
             <div class="player player2">
-                <div class="player-name">Player 2</div>
-                <div class="player-score">0</div>
-            </div>
-            <div id="scene">
-                <button id="button">
-                Start game
-                </button>
-                <button id="buttonStart">
-                Next round
-                </button>
+                <img src="Assets/Images/kirby-removebg-preview.png" alt="kirby-removebg-preview">
+                <div class="player-name">Player 2 </div>
+                
+                <div class="player-score">| Score: 0</div>
             </div>
         </div>
+    </div>
+            <div id="buttonSection">
+                <button id="startButton">
+                    Start game
+                </button>
+                <button id="roundStartButton">
+                    round start
+                </button>
+                <button id="attack">
+                    attack
+                </button>
+                <button id="resetButton">
+                    reset game
+                </button>
+            </div>
     </main>
 </body>
 

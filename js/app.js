@@ -1,33 +1,53 @@
 /*------ western/ swordsman game musical chairs ------*/
 
 /*-------------------------------- Constants --------------------------------*/
+import {
+  snow,
+  warField,
+  hAndB,
+  stressFilled
+} from "./audio.js"
 const numRounds = 4
 const winningScore = 3
-
 /*---------------------------- Variables (state) ----------------------------*/
+
+let round = 1
+let winner = false
+let songEndTime = 0
+let songTitle = ""
 let player1Score = 0
 let player2Score = 0
-//have to set to 1 for the if else statement to check for point distr.
 let globalTimer
-let roundStart = false
-let gameOver = false
-let startTime = 0
-
-
+let inputAllowed = false
+let timeInterval
+let player1Image = ""
+let player2Image = ""
 /*------------------------ Cached Element References ------------------------*/
 
+const roundStartTimerEl = document.getElementById('roundStartTimer')
 let header = document.querySelector('h1')
 let button = document.querySelector('button')
-
-
+const startScreen = document.getElementById("start-screen")
+const startButton = document.getElementById("startButton")
+const gameBoard = document.getElementById("gameboard")
 /*----------------------------- Event Listeners -----------------------------*/
 
-button.addEventListener('click', makeAnimationGo)
-
-
+startButton.addEventListener("click", function(){
+  startGame()
+})
+roundStartButton.addEventListener("click", function(){
+  startRound()
+})
+nextRoundButton.addEventListener("click", function() {
+  nextRound()
+})
+resetButton.addEventListener("click", function(){
+  resetGame()
+})
 
 /*-------------------------------- Functions --------------------------------*/
-function initialize () {
+function startGame () {
+  startScreen.style.display = "none"
 
 }
 
@@ -41,27 +61,32 @@ function makeRandomNum(min, max) {
   max = Math.floor(1)
   return parseInt(Math.random() * (max - min) + min);
 }
+function endGame(){
 
+  if (player1Score || player2Score === winningScore) { gameOver()
+  } else {
+    nextRound()
+  }
+}
 console.log(makeRandomNum(0, 100))
 function playRandom() {
   //declare if a round is started, if not ignore the timer
   if (roundStart === true){
       // declare random num 
       let randomNumber = Math.floor(Math.random() * 1000) + 5000
-      //declare sound
-      let song = new Audio('Assets/Songs/Honey And Bleach.mp3')
+      //import sound from seperate js file
       // play song
-      song.play()
+      snow.play()
       // record start time of song playing
-      let startTime = Date.now()
+      let songStartTime = Date.now()
       // declare end time 
       let endTime
       console.time('startRoundTimer')
       // set the timeout function to pause based on random delay
       setTimeout(function() {
-      song.pause()
+      snow.pause()
       endTime = Date.now()
-      let button = document.getElementById('button')
+      let attackButton = document.getElementById('attack')
       button.disabled = false
       button.addEventListener('click', function() {
       let userTime = Date.now()
@@ -71,6 +96,7 @@ function playRandom() {
       console.log(`Difference: ${difference}`)
       button.disabled = true
     })
+    // visual effect i want to implement very unsure of how this will work 
     document.body.style.backgroundColor = "black"
     }, randomNumber) //generate rand time btw 5-15 secs
     document.body.style.backgroundColor = "white"
@@ -86,7 +112,3 @@ function playRandom() {
   //add the random delay function at end
   // turn off user inputs after first input per player
 
-function playSong() {
-  
-}
-let countdownEl = document.getElementById('scene')
