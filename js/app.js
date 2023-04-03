@@ -70,6 +70,14 @@ function endRound() {
   roundStartButton.disabled = false
 }
 
+function endGame(){
+
+  if (player1Score || player2Score === winningScore) { gameOver()
+  } else {
+    nextRound()
+  }
+}
+
 // function startTimer() {
 //   // check for active timer intv
 //   if (timerIntervalId) {
@@ -102,13 +110,6 @@ function makeRandomNum(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function endGame(){
-
-  if (player1Score || player2Score === winningScore) { gameOver()
-  } else {
-    nextRound()
-  }
-}
 
 console.log(makeRandomNum(0, 100))
 
@@ -153,14 +154,19 @@ function playRandom() {
 function nextRound(){
   if (round == 0){
     round++
+    endRound()
     console.log(round)
   } if (round == 1){
     round++
+    endRound()
   } if (round == 2){
     round++
+    endRound()
   } if (round == 3){
     round++
+    endRound()
   } else {
+    endRound()
     endGame()
   }
 }
