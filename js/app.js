@@ -7,7 +7,7 @@ import {
   hAndB,
   stressFilled
 } from "./audio.js"
-const numRounds = 4
+const numRounds = 5
 const winningScore = 3
 /*---------------------------- Variables (state) ----------------------------*/
 // use of file 
@@ -18,7 +18,7 @@ const songs = [
   {title: "Stress Filled", audio: stressFilled}
 ]
 let round = 1
-
+let songsIndex = 0
 let player1Score = 0
 let player2Score = 0
 let timerIntervalId
@@ -49,38 +49,47 @@ function startGame () {
   playRandom()
   startRound()
 }
-function playSong(round){
-  const songsIndex = round - 1
+
+function playSong(){
   songs[songsIndex].audio.play()
 }
+
+function stopSong() {
+  songs[songsIndex].audio.pause()
+}
+
 function startRound() {
-  playSong(round)
+  playSong()
   playRandom()
   startRoundTimerEl.textContent = `Round ${round}`
+  startTimer()
   setTimeout(()=> {
     allowInput()
     makeAnimationGo()
-    startTimer()
   }, 5000)
 }
 
-// function startTimer() {
-  //   // check for active timer intv
-  //   if (timerIntervalId) {
-    //     seconds = 0
-    //     // if interval is active
-    //     clearInterval(timerIntervalId)
-    //     renderMessage()
-    //   }
-    // }
-    
+function startTimer() {
+  const endTime = Date.now() + 5000
+  const timerIntervalId = setInterval(() => {
+    const remainingTime = Math.round((endTime - Date.now()) / 1000) 
+    startRoundTimerEl.textContent = `Starting round in ${remainingTime} seconds`
+    if (remainingTime <= 0) {
+      clearInterval(timerIntervalId)
+      startRoundTimerEl.textContent = ''
+      allowInput(true)
+      playRandom()
+    }
+  }, 1000)
+}
+
     function allowInput() {
       inputAllowed = true
       button.disabled = false
     }
     
     function renderMessage(message){
-      const messageElem = document.getElementById("message")
+      const messageElem = document.getElementById("win-message")
       messageElem.textContent = message
       messageElem.classList.remove("hidden")
         setTimeout(() => {
@@ -91,7 +100,7 @@ function startRound() {
 function endRound() {
   // stop song disable player input
   stopSong()
-  inputAllowed = false
+  allowInput = false
   clearTimeout(timerIntervalId)
   renderMessage("Round end")
   //enable next round
@@ -99,23 +108,29 @@ function endRound() {
 }
 
 function endGame(){
-  if (player1Score || player2Score === winningScore) { 
-    
-    renderMessage("Game over")
-    gameOver()
-
+  let winner = ""
+  if (player1Score === winningScore) { 
+    winner = "Player 1 has won!"
+  } else if (player2Score === winningScore) {
+    winner = "Player 2 has won!" 
   } else {
     nextRound()
+    return
   }
+  // update div with win message
+  const winnerElem = document.querySelector("#win-message")
+  winnerElem.textContent = winner
+  // hide game board show start screen
+  gameBoard.style.display = "none"
+  startScreen.style.display = "flex"
 }
-
 let audio
 
 function changeSong() {
   if (audio) {
     audio.pause();
   }
-  audio = new Audio(`audio/${song}.mp3`);
+  audio = new Audio(`audio/${songsIndex}.mp3`);
   audio.play();
   // songs.file.pause()
   // playSong(round)
@@ -125,35 +140,37 @@ function makeAnimationGo() {
   header.classList.add('animate__animated', "animate__bounce")
 }
 
-
-
 function playRandom() {
   // change song for the start of the round
   changeSong(songs[songsIndex].title)
-  if (round < 1){
-    const attackButton = document.getElementById('attack')
+  if (round <= 1){
     // declare random num 
-      const randomNumber = Math.floor(Math.random() * 1000) + 5000
-      // play song based on what round it is
-      let songStartTime, songEndTime
-      songs[round -1].audio.play()
-      // record start time of song playing
-      songStartTime = Date.now()
-      // set the timeout function to pause based on random delay
-      let difference
-      setTimeout(() => {
-        stopSong()
-        songEndTime = Date.now()
-        attackButton.disabled = false
-        attackButton.addEventListener('click', () => {
-          const userTime = Date.now()
-          const difference = Math.abs(songEndTime - userTime)
-      //this will print a longer number remember to cut off when displaying
-      console.log(`Player input time: ${userTime}`)
-      console.log(`Song end time: ${songEndTime}`)
-      console.log(`Difference: ${difference}`)
-      button.disabled = true
-    })
+    const randomNumber = Math.floor(Math.random() * 1000) + 5000
+    // play song based on what round it is
+    let songEndTime, songStartTime
+    songs[round -1].audio.play()
+    // record start time of song playing
+    songStartTime = Date.now()
+    // set the timeout function to pause based on random delay
+    let difference
+    setTimeout(() => {
+      stopSong()
+      songEndTime = Date.now()
+      const attackButton1 = document.getElementById('attack1')
+      const attackButton2 = document.getElementById('attack2')
+      attackButton1.disabled = false
+      attackButton2.disabled = false
+      attackButton1.addEventListener('click', () => {
+        const user1Time = Date.now()
+        const difference = Math.abs(songEndTime - user1Time)
+        //this will print a longer number remember to cut off when displaying
+        console.log(`Player 1 input time: ${user1Time}`)
+        console.log(`Song end time: ${songEndTime}`)
+        console.log(`Difference: ${difference}`)
+        attackButton1.disabled = true
+        attackButton2.disabled = false
+        player1Score
+      })
     // visual effect i want to implement very unsure of how this will work 
     // document.body.style.backgroundColor = "black"
     //add the randomNumber delay function at end
@@ -173,7 +190,6 @@ function nextRound(){
     endRound()
     endGame()
   }
-  console.log(nextRound)
 }
 
   
