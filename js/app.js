@@ -12,16 +12,15 @@ const winningScore = 3
 /*---------------------------- Variables (state) ----------------------------*/
 // use of file 
 const songs = [
-  {title: "Snow", file: snow},
-  {title: "Warfield", file: warField},
-  {title: "Honey and Bleach", file: hAndB},
-  {title: "Stress Filled", file: stressFilled}
+  {title: "Snow", audio: snow},
+  {title: "Warfield", audio: warField},
+  {title: "Honey and Bleach", audio: hAndB},
+  {title: "Stress Filled", audio: stressFilled}
 ]
 let round = 1
 
 let player1Score = 0
 let player2Score = 0
-
 let timerIntervalId
 /*------------------------ Cached Element References ------------------------*/
 
@@ -50,10 +49,14 @@ function startGame () {
   playRandom()
   startRound()
 }
-
+function playSong(round){
+  const songsIndex = round - 1
+  songs[songsIndex].audio.play()
+}
 function startRound() {
   playSong(round)
-  startRoundTimer.textContent = `Round ${round}`
+  playRandom()
+  startRoundTimerEl.textContent = `Round ${round}`
   setTimeout(()=> {
     allowInput()
     makeAnimationGo()
@@ -61,74 +64,85 @@ function startRound() {
   }, 5000)
 }
 
+// function startTimer() {
+  //   // check for active timer intv
+  //   if (timerIntervalId) {
+    //     seconds = 0
+    //     // if interval is active
+    //     clearInterval(timerIntervalId)
+    //     renderMessage()
+    //   }
+    // }
+    
+    function allowInput() {
+      inputAllowed = true
+      button.disabled = false
+    }
+    
+    function renderMessage(message){
+      const messageElem = document.getElementById("message")
+      messageElem.textContent = message
+      messageElem.classList.remove("hidden")
+        setTimeout(() => {
+        messageElem.classList.add("hidden")
+      }, 5000)
+    }
+
 function endRound() {
   // stop song disable player input
   stopSong()
   inputAllowed = false
   clearTimeout(timerIntervalId)
+  renderMessage("Round end")
   //enable next round
   roundStartButton.disabled = false
 }
 
 function endGame(){
+  if (player1Score || player2Score === winningScore) { 
+    
+    renderMessage("Game over")
+    gameOver()
 
-  if (player1Score || player2Score === winningScore) { gameOver()
   } else {
     nextRound()
   }
 }
 
-// function startTimer() {
-//   // check for active timer intv
-//   if (timerIntervalId) {
-//     seconds = 0
-//     // if interval is active
-//     clearInterval(timerIntervalId)
-//     renderMessage()
-//   }
-// }
-
-function allowInput() {
-  inputAllowed = true
-  button.disabled = false
-}
-
-function renderMessage(){
-  
-}
+let audio
 
 function changeSong() {
-  songs.file.pause()
-  playSong(round)
+  if (audio) {
+    audio.pause();
+  }
+  audio = new Audio(`audio/${song}.mp3`);
+  audio.play();
+  // songs.file.pause()
+  // playSong(round)
 }
 
 function makeAnimationGo() {
   header.classList.add('animate__animated', "animate__bounce")
 }
 
-function makeRandomNum(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
 
-
-console.log(makeRandomNum(0, 100))
 
 function playRandom() {
   // change song for the start of the round
-  changeSong()
+  changeSong(songs[songsIndex].title)
   if (round < 1){
     const attackButton = document.getElementById('attack')
     // declare random num 
       const randomNumber = Math.floor(Math.random() * 1000) + 5000
-      //import sound from seperate js file
       // play song based on what round it is
       let songStartTime, songEndTime
-      round.song.play()
+      songs[round -1].audio.play()
       // record start time of song playing
       songStartTime = Date.now()
       // set the timeout function to pause based on random delay
+      let difference
       setTimeout(() => {
-        round.song.pause()
+        stopSong()
         songEndTime = Date.now()
         attackButton.disabled = false
         attackButton.addEventListener('click', () => {
@@ -152,23 +166,14 @@ function playRandom() {
   }
 }
 function nextRound(){
-  if (round == 0){
-    round++
-    endRound()
-    console.log(round)
-  } if (round == 1){
-    round++
-    endRound()
-  } if (round == 2){
-    round++
-    endRound()
-  } if (round == 3){
-    round++
-    endRound()
+  round++
+  if (round <= numRounds){
+  endRound()
   } else {
     endRound()
     endGame()
   }
+  console.log(nextRound)
 }
 
   
