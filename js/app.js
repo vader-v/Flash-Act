@@ -32,7 +32,6 @@ document.addEventListener("DOMContentLoaded", function(){
   const startScreen = document.getElementById("start-screen")
   const startButton = document.getElementById("start-button")
   const roundStartButton = document.getElementById("round-start-button")
-  const nextRoundbtn = document.getElementById("next-round-button")
   const attackButton1 = document.getElementById('attack1')
   const attackButton2 = document.getElementById('attack2')
   const resetButton = document.getElementById("reset-button")
@@ -49,7 +48,6 @@ document.addEventListener("DOMContentLoaded", function(){
     resetGame()
   })
 
-  
   /*-------------------------------- Functions --------------------------------*/
   function startGame () {
     startRound()
@@ -100,7 +98,6 @@ function nextRound(){
   if (round <= numRounds){
     endRound()
   } else {
-    endRound()
     endGame()
   }
 }
@@ -114,7 +111,9 @@ function endRound() {
   //enable next round
   roundStartButton.disabled = false
 }
+function resetGame(){
 
+}
 function endGame(){
   let winner = ""
   if (player1Score === winningScore) { 
@@ -155,7 +154,7 @@ function makeAnimationGo() {
 function playRandom() {
   // change song for the start of the round
   changeSong(songs[songsIndex].title)
-  if (round <= 1){
+  if (round >= 0){
     // declare random num 
     const randomNumber = Math.floor(Math.random() * 3000) + 5000
     // play song based on what round it is
