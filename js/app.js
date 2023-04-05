@@ -9,9 +9,9 @@ import {
 } from "./audio.js"
 const songs = [
   {title: "Snow", audio: snow, round: 0},
-  {title: "Warfield", audio: warField, round: 1},
-  {title: "Honey and Bleach", audio: hAndB, round: 2},
-  {title: "Stress Filled", audio: stressFilled, round: 3}
+  {title: "Warfield", audio: warField, round: 1, volume: 0.4},
+  {title: "Honey and Bleach", audio: hAndB, round: 2, volume: 0.4},
+  {title: "Stress Filled", audio: stressFilled, round: 3, volume: 0.4}
 ]
 document.addEventListener("DOMContentLoaded", function(){
 
@@ -48,9 +48,7 @@ document.addEventListener("DOMContentLoaded", function(){
   resetButton.addEventListener("click", function(){
     resetGame()
   })
-  nextRoundbtn.addEventListener("click", function(){
-    nextRound()
-  })
+
   
   /*-------------------------------- Functions --------------------------------*/
   function startGame () {
@@ -181,7 +179,15 @@ function playRandom() {
         console.log(`Difference: ${difference1}`)
         attackButton1.disabled = true
         attackButton2.disabled = false
-        player1Score
+        if (difference1 < difference2){
+          player1Score++
+          console.log('Player 1 wins!')
+        } else if (difference2 < difference1) {
+          player2Score++
+          console.log('player 2 wins!')
+        } else {
+          console.log('Tie!')
+        }
       })
       attackButton2.addEventListener('click', () => {
         const user2Time = Date.now()
@@ -192,18 +198,26 @@ function playRandom() {
         console.log(`Difference: ${difference2}`)
         attackButton2.disabled = true
         attackButton1.disabled = true
-        player2Score
+
+        if (difference1 < difference2){
+          player1Score++
+          console.log('Player 1 wins!')
+        } else if (difference2 < difference1) {
+          player2Score++
+          console.log('player 2 wins!')
+        } else {
+          console.log('Tie!')
+        }
       })
       songsIndex++
-      // visual effect i want to implement very unsure of how this will work 
-      // document.body.style.backgroundColor = "black"
-      //add the randomNumber delay function at end
     }, randomNumber) //generate rand time btw 5-15 secs
-    // document.body.style.backgroundColor = "white"
   }
 }
 
-})
+// visual effect i want to implement very unsure of how this will work 
+// document.body.style.backgroundColor = "black"
+//add the randomNumber delay function at end
+// document.body.style.backgroundColor = "white"
 
 //pause song
 //record end time
@@ -212,3 +226,4 @@ function playRandom() {
 // calculate difference btw end time and user input time for both players seperately
 // turn off user inputs after first input per player
 
+})
