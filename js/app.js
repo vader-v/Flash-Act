@@ -185,8 +185,6 @@ function playRandom() {
         } else if (difference2 < difference1) {
           player2Score++
           console.log('player 2 wins!')
-        } else {
-          console.log('Tie!')
         }
       })
       attackButton2.addEventListener('click', () => {
@@ -197,7 +195,7 @@ function playRandom() {
         console.log(`Song end time: ${songEndTime}`)
         console.log(`Difference: ${difference2}`)
         attackButton2.disabled = true
-        attackButton1.disabled = true
+        attackButton1.disabled = false
 
         if (difference1 < difference2){
           player1Score++
@@ -205,9 +203,7 @@ function playRandom() {
         } else if (difference2 < difference1) {
           player2Score++
           console.log('player 2 wins!')
-        } else {
-          console.log('Tie!')
-        }
+        } 
       })
       songsIndex++
     }, randomNumber) //generate rand time btw 5-15 secs
