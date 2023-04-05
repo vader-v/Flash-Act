@@ -7,78 +7,80 @@ import {
   hAndB,
   stressFilled
 } from "./audio.js"
-const numRounds = 5
-const winningScore = 3
-/*---------------------------- Variables (state) ----------------------------*/
-// use of file 
 const songs = [
   {title: "Snow", audio: snow, round: 0},
   {title: "Warfield", audio: warField, round: 1},
   {title: "Honey and Bleach", audio: hAndB, round: 2},
   {title: "Stress Filled", audio: stressFilled, round: 3}
 ]
-let round = 1
-let songsIndex = 0
-let player1Score = 0
-let player2Score = 0
-let timerIntervalId
-/*------------------------ Cached Element References ------------------------*/
+document.addEventListener("DOMContentLoaded", function(){
 
-const startRoundTimerEl = document.getElementById('timer')
-let header = document.querySelector('h1')
-let button = document.querySelector('button')
-const startScreen = document.getElementById("start-screen")
-const startButton = document.getElementById("start-button")
-const roundStartButton = document.getElementById("round-start-button")
-const nextRoundbtn = document.getElementById("next-round-button")
-const attackButton1 = document.getElementById('attack1')
-const attackButton2 = document.getElementById('attack2')
-const resetButton = document.getElementById("reset-button")
-const gameBoard = document.getElementById("gameboard")
-/*----------------------------- Event Listeners -----------------------------*/
-
-startButton.addEventListener("click", function(){
-  startGame()
-})
-roundStartButton.addEventListener("click", function(){
-  startRound()
-})
-resetButton.addEventListener("click", function(){
-  resetGame()
-})
-// nextRoundbtn.addEventListener("click", function(){
-//   nextRound()
-// })
-
-/*-------------------------------- Functions --------------------------------*/
-function startGame () {
-  startRound()
-}
-
-function playSong(){
-  songs[songsIndex].audio.play()
-}
-
-function stopSong() {
-  songs[songsIndex].audio.pause()
-}
-
-function startRound() {
-  playRandom()
-  startRoundTimerEl.textContent = `Round ${round}`
-  startTimer()
-}
-
-function startTimer() {
-  const endTime = Date.now() + 4000
-  timerIntervalId = setInterval(() => {
-    const remainingTime = Math.round((endTime - Date.now()) / 1000) 
-    startRoundTimerEl.textContent = `Starting round in ${remainingTime} seconds`
-    if (remainingTime <= 0) {
-      clearInterval(timerIntervalId)
-      startRoundTimerEl.textContent = ''
-      allowInput(true)
-      playRandom()
+  const numRounds = 5
+  const winningScore = 3
+  /*---------------------------- Variables (state) ----------------------------*/
+  // use of file 
+  let round = 1
+  let songsIndex = 0
+  let player1Score = 0
+  let player2Score = 0
+  let timerIntervalId
+  /*------------------------ Cached Element References ------------------------*/
+  
+  const startRoundTimerEl = document.getElementById('timer')
+  let header = document.querySelector('h1')
+  let button = document.querySelector('button')
+  const startScreen = document.getElementById("start-screen")
+  const startButton = document.getElementById("start-button")
+  const roundStartButton = document.getElementById("round-start-button")
+  const nextRoundbtn = document.getElementById("next-round-button")
+  const attackButton1 = document.getElementById('attack1')
+  const attackButton2 = document.getElementById('attack2')
+  const resetButton = document.getElementById("reset-button")
+  const gameBoard = document.getElementById("gameboard")
+  /*----------------------------- Event Listeners -----------------------------*/
+  
+  startButton.addEventListener("click", function(){
+    startGame()
+  })
+  roundStartButton.addEventListener("click", function(){
+    startRound()
+  })
+  resetButton.addEventListener("click", function(){
+    resetGame()
+  })
+  nextRoundbtn.addEventListener("click", function(){
+    nextRound()
+  })
+  
+  /*-------------------------------- Functions --------------------------------*/
+  function startGame () {
+    startRound()
+  }
+  
+  function playSong(){
+    songs[songsIndex].audio.play()
+  }
+  
+  function stopSong() {
+    songs[songsIndex].audio.pause()
+  }
+  
+  function startRound() {
+    playRandom()
+    startRoundTimerEl.textContent = `Round ${round}`
+    startTimer()
+  }
+  
+  function startTimer() {
+    const endTime = Date.now() + 4000
+    timerIntervalId = setInterval(() => {
+      const remainingTime = Math.round((endTime - Date.now()) / 1000) 
+      startRoundTimerEl.textContent = `Starting round in ${remainingTime} seconds`
+      if (remainingTime <= 0) {
+        clearInterval(timerIntervalId)
+        startRoundTimerEl.textContent = ''
+        allowInput(true)
+        playRandom()
     }
   }, 1000)
 }
@@ -98,7 +100,7 @@ function renderMessage(message){
 function nextRound(){
   round++
   if (round <= numRounds){
-  endRound()
+    endRound()
   } else {
     endRound()
     endGame()
@@ -140,7 +142,7 @@ function endGame(){
 
 function changeSong() {
   if (songs.audio) {
-  songs.audio.pause();
+    songs.audio.pause();
   }
   songs.audio = new Audio(`audio/${songsIndex}.mp3`);
   songs.audio.play();
@@ -193,19 +195,20 @@ function playRandom() {
         player2Score
       })
       songsIndex++
-    // visual effect i want to implement very unsure of how this will work 
-    // document.body.style.backgroundColor = "black"
-    //add the randomNumber delay function at end
+      // visual effect i want to implement very unsure of how this will work 
+      // document.body.style.backgroundColor = "black"
+      //add the randomNumber delay function at end
     }, randomNumber) //generate rand time btw 5-15 secs
     // document.body.style.backgroundColor = "white"
   }
 }
 
-  
-  //pause song
-  //record end time
-  //get the button and enable click event
-  //record user input time
-  // calculate difference btw end time and user input time for both players seperately
-  // turn off user inputs after first input per player
+})
+
+//pause song
+//record end time
+//get the button and enable click event
+//record user input time
+// calculate difference btw end time and user input time for both players seperately
+// turn off user inputs after first input per player
 
