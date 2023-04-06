@@ -129,11 +129,18 @@ document.addEventListener("DOMContentLoaded", function(){
     player2Score = 0
     round = 1
     songsIndex = 0
+    resetSongStartTime()
     // reset display
     player1ScoreDisplay.textContent = "0"
     player2ScoreDisplay.textContent = "0"
     winnerElem.style.display = "none"
     loserElem.style.display = "none"
+  }
+  //in order for the songs to replay sequentially when the game is reset the songs start time will have to be reset using the currentTime value for the audio.
+  function resetSongStartTime(){
+    songs.forEach((song) => {
+      song.audio.currentTime = 0
+    })
   }
   function checkWinner(){
     if (player1Score >= winningScore) {
