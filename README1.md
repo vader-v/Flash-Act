@@ -29,6 +29,12 @@ Stack Overflow. (n.d.). Stack Exchange Inc. https://stackoverflow.com/
 
 Google. (n.d.). Google Search Engine. https://www.google.com/
 
+## Attributions used
+  Songs used
+- Warfield https://soundcloud.com/akoge/w-sterling-bidler
+- Snow https://soundcloud.com/sterlingbidler/anna-pest-x-sterling-bidler-snow?si=d90938d783aa46a5b3cbc13746d009b1&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing
+- Honey and Bleach https://soundcloud.com/sterlingbidler/honey-and-bleach?si=d90938d783aa46a5b3cbc13746d009b1&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing
+- Stress Communication https://soundcloud.com/sterlingbidler/sterling-bidler-stress-communication?si=d90938d783aa46a5b3cbc13746d009b1&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing
 
 two inputs, one kill, one win, one loss....
 ![Alt text](Assets/Images/2023-04-06.png)
