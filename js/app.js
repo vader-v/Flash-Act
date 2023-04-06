@@ -7,13 +7,13 @@ import {
   hAndB,
   stressFilled
 } from "./audio.js"
+
 document.addEventListener("DOMContentLoaded", function(){
-  
   const songs = [
-    {title: "Snow", audio: snow, round: 1, volume: 0.5},
-    {title: "Warfield", audio: warField, round: 2, volume: 0.4},
-    {title: "Honey and Bleach", audio: hAndB, round: 3, volume: 0.4},
-    {title: "Stress Filled", audio: stressFilled, round: 4, volume: 0.4}
+    {title: "Snow", audio: snow, round: 1},
+    {title: "Warfield", audio: warField, round: 2},
+    {title: "Honey and Bleach", audio: hAndB, round: 3},
+    {title: "Stress Filled", audio: stressFilled, round: 4}
   ]
   const numRounds = 5
   const winningScore = 3
@@ -249,9 +249,9 @@ document.addEventListener("DOMContentLoaded", function(){
         player2ScoreDisplay.textContent = player2Score.toString()
         console.log("player 2 score:", player2Score)
         } 
+        checkWinner()
         player1Clicked = false
         player2Clicked = false
-        checkWinner()
       }
     })
     songsIndex++
