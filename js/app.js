@@ -62,9 +62,6 @@ document.addEventListener("DOMContentLoaded", function(){
   }
   
   function startRound() {
-    // playRandom()
-    player1Score = 0
-    player2Score = 0
     startRoundTimerEl.textContent = `Round ${round}`
     startTimer()
   }
@@ -122,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function(){
     winnerElem.style.display = "none"
     loserElem.style.display = "none"
   }
-  function checkwinner(){
+  function checkWinner(){
     if (player1Score >= winningScore) {
       console.log("Player 1 has won!")
       winnerElem.textContent = "Player 1 has won!"
@@ -181,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function(){
       const randomNumber = Math.floor(Math.random() * 3000) + 6000
       // play song based on what round it is
       let songEndTime, songStartTime
-      changeSong(songs[round].audio)
+      changeSong(songs[songsIndex].audio)
         playSong()
         // record start time of song playing
         songStartTime = Date.now()
@@ -221,7 +218,7 @@ document.addEventListener("DOMContentLoaded", function(){
               }
               player1Clicked = false
               player2Clicked = false
-              checkwinner()
+              checkWinner()
           } 
               //this will print a longer number remember to cut off when displaying
       })
@@ -254,11 +251,10 @@ document.addEventListener("DOMContentLoaded", function(){
         } 
         player1Clicked = false
         player2Clicked = false
-        checkwinner()
+        checkWinner()
       }
-      })
-      
-      songsIndex++
+    })
+    songsIndex++
     }, randomNumber) //generate rand time btw 5-15 secs
   }
 }
