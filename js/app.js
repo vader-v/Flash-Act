@@ -52,8 +52,19 @@ document.addEventListener("DOMContentLoaded", function(){
   })
   resetButton.addEventListener("click", resetGame)
   attackButton1.addEventListener('click', handlePlayer1Click)
-  
+  document.addEventListener('keydown', function(event){
+    if (event.code === 'Space'){
+      event.preventDefault()
+      attackButton1.click()
+    }
+  })
   attackButton2.addEventListener('click', handlePlayer2Click)
+  document.addEventListener('keydown', function(event){
+    if (event.code === 'KeyK'){
+      event.preventDefault()
+      attackButton2.click()
+    }
+  })
   /*-------------------------------- Functions --------------------------------*/
   function startGame () {
     startRound()
@@ -151,17 +162,17 @@ document.addEventListener("DOMContentLoaded", function(){
       console.log("Player 2 is the winner!")
       winner = "Player 2"
       loser = "Player 1" 
-        } else {
-          nextRound()
-          return
-        }
-        // update div with win message
-        // hide game board show start screen
-        gameBoard.style.display = "none"
-        startScreen.style.display = "flex"
-      }
-      // let audio
-      
+    } else {
+      nextRound()
+      return
+    }
+    // update div with win message
+    // hide game board show start screen
+    gameBoard.style.display = "none"
+    startScreen.style.display = "flex"
+  }
+  // let audio
+  
   function changeSong() {
     if (songs[songsIndex].audio) {
       songs[songsIndex].audio.pause()
@@ -178,7 +189,73 @@ document.addEventListener("DOMContentLoaded", function(){
   let player2Clicked = false
   // let player1Score = 0 // reset player1Score to 0
   // let player2Score = 0 // reset player2Score to 0
-
+  function handlePlayer1Click(){
+    if (!player1Clicked){
+      player1Clicked = true
+      let player1ScoreString = player1ScoreDisplay.textContent
+      let player2ScoreString = player2ScoreDisplay.textContent
+      player1Score = player1ScoreString
+      player2Score = player2ScoreString
+      player1ScoreDisplay.textContent = player1Score.toString()
+      const user1Time = Date.now()
+      difference1 = Math.abs(songEndTime - user1Time)
+      console.log(`Player 1 input time: ${user1Time}`)
+      console.log(`Song end time: ${songEndTime}`)
+      console.log(`Difference: ${difference1}`)
+      if (player2Clicked){
+        if (difference1 < difference2){
+          player1Score++
+          console.log('Player 1 wins!')
+          player1ScoreDisplay.textContent =  player1Score.toString()
+          console.log("Player 1 score:",player1Score)
+        } else if (difference2 < difference1) {
+          player2Score++
+          console.log("player 2 score:", player2Score)
+          console.log('Player 2 wins!')
+          player2ScoreDisplay.textContent = player2Score.toString()
+          attackButton1.disabled = false
+          attackButton2.disabled = false
+        }
+        player1Clicked = false
+        player2Clicked = false
+        checkWinner()
+      }
+    } 
+  }
+  function handlePlayer2Click(){
+    if (!player2Clicked){
+      player2Clicked = true
+      let player1ScoreString = player1ScoreDisplay.textContent
+      let player2ScoreString = player2ScoreDisplay.textContent
+      player1Score = player1ScoreString
+      player2Score = player2ScoreString
+      player2ScoreDisplay.textContent = player2Score.toString()
+      const user2Time = Date.now()
+      difference2 = Math.abs(songEndTime - user2Time)
+      //this will print a longer number remember to cut off when displaying
+      console.log(`Player 2 input time: ${user2Time}`)
+      console.log(`Song end time: ${songEndTime}`)
+      console.log(`Difference: ${difference2}`)
+      attackButton2.disabled = false
+      attackButton1.disabled = false
+      if (player1Clicked){
+        if (difference1 < difference2){
+          player1Score++
+          console.log('Player 1 wins!')
+          player1ScoreDisplay.textContent = player1Score.toString()
+          console.log("player 1 score:", player1Score)
+        } else if (difference2 < difference1) {
+          player2Score++
+          console.log('player 2 wins!')
+          player2ScoreDisplay.textContent = player2Score.toString()
+          console.log("player 2 score:", player2Score)
+        } 
+        checkWinner()
+        player1Clicked = false
+        player2Clicked = false
+      }
+    }
+  }
   function playRandom() {
     // change song for the start of the round
     if (round > 0){
@@ -199,73 +276,6 @@ document.addEventListener("DOMContentLoaded", function(){
       // handlePlayer1Click()
       // handlePlayer2Click()
     }, randomNumber) //generate rand time btw 5-15 secs
-  }
-}
-function handlePlayer1Click(){
-  if (!player1Clicked){
-    player1Clicked = true
-    let player1ScoreString = player1ScoreDisplay.textContent
-    let player2ScoreString = player2ScoreDisplay.textContent
-    player1Score = player1ScoreString
-    player2Score = player2ScoreString
-    player1ScoreDisplay.textContent = player1Score.toString()
-    const user1Time = Date.now()
-    difference1 = Math.abs(songEndTime - user1Time)
-    console.log(`Player 1 input time: ${user1Time}`)
-    console.log(`Song end time: ${songEndTime}`)
-    console.log(`Difference: ${difference1}`)
-    if (player2Clicked){
-      if (difference1 < difference2){
-        player1Score++
-        console.log('Player 1 wins!')
-        player1ScoreDisplay.textContent =  player1Score.toString()
-        console.log("Player 1 score:",player1Score)
-      } else if (difference2 < difference1) {
-        player2Score++
-        console.log("player 2 score:", player2Score)
-        console.log('Player 2 wins!')
-        player2ScoreDisplay.textContent = player2Score.toString()
-        attackButton1.disabled = false
-        attackButton2.disabled = false
-      }
-      player1Clicked = false
-      player2Clicked = false
-      checkWinner()
-    }
-  } 
-}
-function handlePlayer2Click(){
-  if (!player2Clicked){
-    player2Clicked = true
-    let player1ScoreString = player1ScoreDisplay.textContent
-    let player2ScoreString = player2ScoreDisplay.textContent
-    player1Score = player1ScoreString
-    player2Score = player2ScoreString
-    player2ScoreDisplay.textContent = player2Score.toString()
-    const user2Time = Date.now()
-    difference2 = Math.abs(songEndTime - user2Time)
-    //this will print a longer number remember to cut off when displaying
-    console.log(`Player 2 input time: ${user2Time}`)
-    console.log(`Song end time: ${songEndTime}`)
-    console.log(`Difference: ${difference2}`)
-    attackButton2.disabled = false
-    attackButton1.disabled = false
-    if (player1Clicked){
-      if (difference1 < difference2){
-        player1Score++
-        console.log('Player 1 wins!')
-        player1ScoreDisplay.textContent = player1Score.toString()
-        console.log("player 1 score:", player1Score)
-      } else if (difference2 < difference1) {
-        player2Score++
-        console.log('player 2 wins!')
-        player2ScoreDisplay.textContent = player2Score.toString()
-        console.log("player 2 score:", player2Score)
-      } 
-      checkWinner()
-      player1Clicked = false
-      player2Clicked = false
-    }
   }
 }
 
