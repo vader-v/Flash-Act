@@ -99,14 +99,11 @@ document.addEventListener("DOMContentLoaded", function(){
     songsIndex++
     if (round <= numRounds){
       endRound()
-    } else {
-      endGame()
     }
   }
   
   function endRound() {
     // stop song disable player input
-    stopSong()
     allowInput(false)
     clearTimeout(timerIntervalId)
     renderMessage("Round end")
@@ -124,6 +121,20 @@ document.addEventListener("DOMContentLoaded", function(){
     player2ScoreDisplay.textContent = "0"
     winnerElem.style.display = "none"
     loserElem.style.display = "none"
+  }
+  function checkwinner(){
+    if (player1Score >= winningScore) {
+      console.log("Player 1 has won!")
+      winnerElem.textContent = "Player 1 has won!"
+      loserElem.textContent = "Player 2 is the loser."
+    } else if (player2Score >= winningScore){
+      console.log("Player 2 has won!")
+      winnerElem.textContent = "Player 2 has won!"
+      loserElem.textContent = "Player 1 is the loser."
+    } else {
+      nextRound()
+      return
+    }
   }
   function endGame(){
     let winner = ""
@@ -165,12 +176,12 @@ document.addEventListener("DOMContentLoaded", function(){
 
   function playRandom() {
     // change song for the start of the round
-    changeSong(songs[songsIndex].audio)
     if (round > 0){
-        // declare random num 
-        const randomNumber = Math.floor(Math.random() * 3000) + 6000
-        // play song based on what round it is
-        let songEndTime, songStartTime
+      // declare random num 
+      const randomNumber = Math.floor(Math.random() * 3000) + 6000
+      // play song based on what round it is
+      let songEndTime, songStartTime
+      changeSong(songs[round].audio)
         playSong()
         // record start time of song playing
         songStartTime = Date.now()
@@ -191,30 +202,31 @@ document.addEventListener("DOMContentLoaded", function(){
           player1ScoreDisplay.textContent = player1Score.toString()
           const user1Time = Date.now()
           difference1 = Math.abs(songEndTime - user1Time)
+          console.log(`Player 1 input time: ${user1Time}`)
+          console.log(`Song end time: ${songEndTime}`)
+          console.log(`Difference: ${difference1}`)
           if (player2Clicked){
             if (difference1 < difference2){
-                player1Score++
-                console.log('Player 1 wins!')
-                player1ScoreDisplay.textContent =  player1Score.toString()
-                console.log("Player 1 score:",player1Score)
-                } else if (difference2 < difference1) {
-                player2Score++
-                console.log('Player 2 wins!')
-                player2ScoreDisplay.textContent = player2Score.toString()
-                console.log("player 2 score:",player2Score)
-                console.log(`Player 1 input time: ${user1Time}`)
-                console.log(`Song end time: ${songEndTime}`)
-                console.log(`Difference: ${difference1}`)
+              player1Score++
+              console.log('Player 1 wins!')
+              player1ScoreDisplay.textContent =  player1Score.toString()
+              console.log("Player 1 score:",player1Score)
+            } else if (difference2 < difference1) {
+              player2Score++
+              console.log("player 2 score:", player2Score)
+              console.log('Player 2 wins!')
+              player2ScoreDisplay.textContent = player2Score.toString()
                 attackButton1.disabled = false
                 attackButton2.disabled = false
-                }
+              }
               player1Clicked = false
               player2Clicked = false
-              } 
+              checkwinner()
+          } 
               //this will print a longer number remember to cut off when displaying
       })
       attackButton2.addEventListener('click', () => {
-        player2Clicked = true
+      player2Clicked = true
       let player1ScoreDisplay = document.getElementById("player1ScoreDisplay")
       let player2ScoreDisplay = document.getElementById("player2ScoreDisplay")
       player2ScoreDisplay.textContent = player2Score.toString()
@@ -240,24 +252,12 @@ document.addEventListener("DOMContentLoaded", function(){
         player2ScoreDisplay.textContent = player2Score.toString()
         console.log("player 2 score:", player2Score)
         } 
+        player1Clicked = false
+        player2Clicked = false
+        checkwinner()
       }
       })
-      let winner = ""
-      let loser = ""
-      winnerElem.textContent = `${winner} Has won!`
-      loserElem.textContent = `${loser} is the loser.`
-      if (player1Score >= winningScore) { 
-        console.log("Player 1 is the winner!")
-        winner = "Player 1"
-        loser = "Player 2"
-      } else if (player2Score >= winningScore) {
-        console.log("Player 2 is the winner!")
-        winner = "Player 2"
-        loser = "Player 1" 
-          } else {
-            nextRound()
-            return
-          }
+      
       songsIndex++
     }, randomNumber) //generate rand time btw 5-15 secs
   }
