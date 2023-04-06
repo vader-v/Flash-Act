@@ -18,10 +18,10 @@ To play Flash-Act, you will need two players and a device with access to the int
 - Repeat steps 3-7 until a winner is determined.
 
 
-#Technologies Used
+# Technologies Used
 Flash-Act is a JavaScript, HTML, and CSS based game. The game relies on the Web Audio API to play the song and measure the player's reaction time.
 
-##References Used
+## References Used
 
 MDN Web Docs. (n.d.). Mozilla Developer Network. https://developer.mozilla.org/en-US/
 
