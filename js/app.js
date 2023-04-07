@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function(){
   let timerIntervalId
   let difference1, difference2
   /*------------------------ Cached Element References ------------------------*/
-  // let button = document.querySelector('button')
+  
   const startScreen = document.getElementById("start-screen")
   const gameBoard = document.getElementById("gameboard")
   const buttonSection = document.getElementById("buttonSection")
@@ -44,6 +44,8 @@ document.addEventListener("DOMContentLoaded", function(){
   const loserElem = document.querySelector("#loss-message")
   let originalWinnerElem = winnerElem.textContent
   let originalLoserElem = loserElem.textContent
+  const player1Attack = document.getElementById('player1Attack')
+  const player2Attack = document.getElementById('player2Attack')
   /*----------------------------- Event Listeners -----------------------------*/
   
   startButton.addEventListener("click", function(){
@@ -148,6 +150,8 @@ document.addEventListener("DOMContentLoaded", function(){
     turnOnButtons()
     player1ScoreDisplay.textContent = "0"
     player2ScoreDisplay.textContent = "0"
+    player1Attack.textContent = ""
+    player2Attack.textContent = ""
   }
   //in order for the songs to replay sequentially when the game is reset the songs start time will have to be reset using the currentTime value for the audio.
   function resetSongStartTime(){
@@ -229,6 +233,7 @@ document.addEventListener("DOMContentLoaded", function(){
           player1Score++
           console.log('Player 1 wins!')
           player1ScoreDisplay.textContent =  player1Score.toString()
+          player1Attack.textContent = difference1, user1Time, `Player 1 wins the round!`
           console.log("Player 1 score:",player1Score)
         } else if (difference2 < difference1) {
           player2Score++
@@ -264,14 +269,14 @@ document.addEventListener("DOMContentLoaded", function(){
         if (difference1 < difference2){
           player1Score++
           console.log('Player 1 wins!')
-          player1Attack.textContent = difference1, user1Time, `Player 1 wins the round!`
           player1ScoreDisplay.textContent = player1Score.toString()
           console.log("player 1 score:", player1Score)
+          
         } else if (difference2 < difference1) {
           player2Score++
           console.log('player 2 wins!')
-          player2Attack.textContent = difference2, user2Time, `Player 2 wins the round!`
           player2ScoreDisplay.textContent = player2Score.toString()
+          player2Attack.textContent = parseInt("Difference :", difference2, "Input time :", user2Time, `Player 2 wins the round!`)
           console.log("player 2 score:", player2Score)
         } else if (player1Score || player2Score >= 3){
           endGame()
