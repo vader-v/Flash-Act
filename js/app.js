@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function(){
   
   startButton.addEventListener("click", function(){
     startGame()
-    allowInput(true)
+    allowInput()
   })
   roundStartButton.addEventListener("click", function(){
     startRound()
@@ -59,6 +59,7 @@ document.addEventListener("DOMContentLoaded", function(){
     }
   })
   attackButton2.addEventListener('click', handlePlayer2Click)
+  //Add keyboard key functionality in place of mouse click
   document.addEventListener('keydown', function(event){
     if (event.code === 'KeyK'){
       event.preventDefault()
@@ -96,10 +97,6 @@ document.addEventListener("DOMContentLoaded", function(){
     }, 1000)
   }
   
-  function allowInput() {
-    button.disabled = false
-  }
-  
   function renderMessage(message){
     const messageElem = document.getElementById("win-message")
     messageElem.textContent = message
@@ -114,14 +111,14 @@ document.addEventListener("DOMContentLoaded", function(){
       endRound()
     } 
   }
-  
   function endRound() {
     // stop song disable player input
-    allowInput(false)
+    denyInput()
     clearTimeout(timerIntervalId)
-    renderMessage("Round end")
+    renderMessage(`Round ${round}`)
     //enable next round
     roundStartButton.disabled = false
+    resetButton.disabled = false
   }
   function resetGame(){
     //reset variables
@@ -147,36 +144,38 @@ document.addEventListener("DOMContentLoaded", function(){
       console.log("Player 1 has won!")
       winnerElem.textContent = "Player 1 has won!"
       loserElem.textContent = "Player 2 is the loser."
+      endGame()
     } else if (player2Score >= winningScore){
       console.log("Player 2 has won!")
       winnerElem.textContent = "Player 2 has won!"
       loserElem.textContent = "Player 1 is the loser."
+      endGame()
     } else {
       nextRound()
       return
     }
   }
+  function denyInput(){
+    // disable all buttons besides reset button
+    const buttons = document.querySelectorAll('button')
+    buttons.forEach(button =>{
+      if (button.id !== 'resetButton'){
+        button.disabled = true
+      }
+    })
+  }
+  function allowInput() {
+    const buttons = document.querySelectorAll('button')
+    buttons.forEach(button => {
+    button.disabled = false
+    })
+  }
+  
+  let gameEnd = false
   function endGame(){
-    let winner = ""
-    let loser = ""
-    winnerElem.textContent = `${winner} Has won!`
-    loserElem.textContent = `${loser} is the loser.`
-    if (player1Score >= winningScore) { 
-      console.log("Player 1 is the winner!")
-      winner = "Player 1"
-      loser = "Player 2"
-    } else if (player2Score >= winningScore) {
-      console.log("Player 2 is the winner!")
-      winner = "Player 2"
-      loser = "Player 1" 
-    } else {
-      nextRound()
-      return
-    }
-    // update div with win message
-    // hide game board show start screen
-    gameBoard.style.display = "none"
-    startScreen.style.display = "flex"
+    gameEnd = true
+    denyInput()
+    resetButton.disabled = false
   }
   // let audio
   
@@ -194,8 +193,7 @@ document.addEventListener("DOMContentLoaded", function(){
   }
   let player1Clicked = false
   let player2Clicked = false
-  // let player1Score = 0 // reset player1Score to 0
-  // let player2Score = 0 // reset player2Score to 0
+
   function handlePlayer1Click(){
     if (!player1Clicked){
       player1Clicked = true
@@ -239,7 +237,6 @@ document.addEventListener("DOMContentLoaded", function(){
       player2ScoreDisplay.textContent = player2Score.toString()
       const user2Time = Date.now()
       difference2 = Math.abs(songEndTime - user2Time)
-      //this will print a longer number remember to cut off when displaying
       console.log(`Player 2 input time: ${user2Time}`)
       console.log(`Song end time: ${songEndTime}`)
       console.log(`Difference: ${difference2}`)
@@ -256,7 +253,9 @@ document.addEventListener("DOMContentLoaded", function(){
           console.log('player 2 wins!')
           player2ScoreDisplay.textContent = player2Score.toString()
           console.log("player 2 score:", player2Score)
-        } 
+        } else if (player1Score || player2Score >= 3){
+          endGame()
+        }
         checkWinner()
         player1Clicked = false
         player2Clicked = false
