@@ -2,6 +2,8 @@
 # Reaction time based 1v1 game
 
 # Play my Game [here](https://flash-act.netlify.app/)
+![Alt text](./Assets/Images/2023-04-07%20(3).png)
+![Alt text](./Assets/Images/2023-04-07%20(2).png)
 
 ## Flash-Act is a challenging multiplayer JavaScript game where you test your reaction time against your friends. The goal is simple: be the first to hit a button as close as possible to the end of a song. The player with the fastest reaction time scores a point, and the game will continue for multiple rounds until a winner is determined.
 
@@ -21,7 +23,7 @@ To play Flash-Act, you will need two players and a device with access to the int
 
 # Future updates
 - Add extra player animations to show when each player inputs
-- Implement ute button to cancel all sound output
+- Implement mute button to cancel all sound output
 - Add an image to react to for core game mechanic instead of listening to the end of the song for accessibility 
 
 # Technologies Used
@@ -48,5 +50,4 @@ Google. (n.d.). Google Search Engine. https://www.google.com/
 - Player 2 icon: https://icons8.com/icon/58282/frisk
 
 two inputs, one kill, one win, one loss....
-![Alt text](./Assets/Images/2023-04-07%20(3).png)
-![Alt text](./Assets/Images/2023-04-07%20(2).png)
+
