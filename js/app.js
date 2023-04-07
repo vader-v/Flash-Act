@@ -304,22 +304,8 @@ document.addEventListener("DOMContentLoaded", function(){
         songEndTime = Date.now()
         attackButton1.disabled = false
         attackButton2.disabled = false
-      // handlePlayer1Click()
-      // handlePlayer2Click()
     }, randomNumber) //generate rand time btw 5-15 secs
   }
 }
-
-// visual effect i want to implement very unsure of how this will work 
-// document.body.style.backgroundColor = "black"
-//add the randomNumber delay function at end
-// document.body.style.backgroundColor = "white"
-
-//pause song
-//record end time
-//get the button and enable click event
-//record user input time
-// calculate difference btw end time and user input time for both players seperately
-// turn off user inputs after first input per player
 
 })
