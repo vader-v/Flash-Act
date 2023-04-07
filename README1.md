@@ -41,5 +41,5 @@ Google. (n.d.). Google Search Engine. https://www.google.com/
 - Player 2 icon: https://icons8.com/icon/58282/frisk
 
 two inputs, one kill, one win, one loss....
-![Alt text](Assets/Images/2023-04-06.png)
-![Alt text](Assets/Images/2023-04-06%20(1).png)
+![Alt text](./Assets/Images/2023-04-07.png)
+![Alt text](./Assets/Images/2023-04-07%20(1).png)
