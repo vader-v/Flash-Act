@@ -1,34 +1,146 @@
-main {
-  background-color: white;
-}
-body {
-  font-size: 16px;
-  color: #333;
-  background-color: #333;
-}
 #start-screen {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  position: relative;
 }
 
+#start-button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+#start-button:hover {
+  background-color: #444;
+}
+
+#start-screen h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+#start-game:focus ~ #start-screen {
+  display: none;
+}
+
+.game-board {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+.game-board #timer {
+  margin-bottom: 1rem;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.player-container {
+  display: flex;
+}
+.player-container {
+  display: flex;
+  flex-wrap: wrap;
+}
 .player {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem;
-  border: 2px solid #333;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+  background-color: #eee;
+  margin: 1rem;
+  border: 2px solid #FF8C00;
 }
-
+.player button {
+  background-color: #333;
+  color: #4682B4;
+  border: none;
+  padding: .5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+.player button:hover {
+  background-color: #444;
+}
 .player + .player{
   margin-left: 1rem;
+}
+
+.attack-buttons {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.attack-buttons button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+.attack-buttons button:hover {
+  background-color: #4682B4;
+}
+
+#round-start-button {
+  background-color: #777;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+#reset-button {
+  background-color: #777;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+#buttonSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+#buttonSection button {
+  margin: 0 1rem;
 }
 
 .player-name {
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
+
 .player-score {
   font-size: 0.8em;
+}
+body {
+  background-color: #4682B4;
 }

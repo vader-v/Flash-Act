@@ -30,8 +30,9 @@ document.addEventListener("DOMContentLoaded", function(){
   let difference1, difference2
   /*------------------------ Cached Element References ------------------------*/
   // let button = document.querySelector('button')
-  // const startScreen = document.getElementById("start-screen")
-  // const gameBoard = document.getElementById("gameboard")
+  const startScreen = document.getElementById("start-screen")
+  const gameBoard = document.getElementById("gameboard")
+  const buttonSection = document.getElementById("buttonSection")
   const startRoundTimerEl = document.getElementById('timer')
   let header = document.querySelector('h1')
   const startButton = document.getElementById("start-button")
@@ -46,6 +47,9 @@ document.addEventListener("DOMContentLoaded", function(){
   /*----------------------------- Event Listeners -----------------------------*/
   
   startButton.addEventListener("click", function(){
+    startScreen.style.display = "none"
+    gameBoard.style.display = "flex"
+    buttonSection.style.display = "flex"
     startGame()
     allowInput()
   })
