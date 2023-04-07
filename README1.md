@@ -23,7 +23,7 @@ To play Flash-Act, you will need two players and a device with access to the int
 - Add an image to react to for core game mechanic instead of listening to the end of the song for accessibility 
 
 # Technologies Used
-Flash-Act is a JavaScript, HTML, and CSS based game. The game relies on the Web Audio API to play the song and measure the player's reaction time.
+Flash-Act is a JavaScript, HTML, and CSS based game. The game relies on the Web Audio API to play the song and measure the player's reaction time. The game is run through the Netlify service and updated regularly via Github. 
 
 ## References Used
 
@@ -46,5 +46,5 @@ Google. (n.d.). Google Search Engine. https://www.google.com/
 - Player 2 icon: https://icons8.com/icon/58282/frisk
 
 two inputs, one kill, one win, one loss....
-![Alt text](./Assets/Images/2023-04-07.png)
-![Alt text](./Assets/Images/2023-04-07%20(1).png)
+![Alt text](./Assets/Images/2023-04-07%20(3).png)
+![Alt text](./Assets/Images/2023-04-07%20(2).png)
