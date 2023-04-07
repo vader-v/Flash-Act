@@ -49,19 +49,19 @@ document.addEventListener("DOMContentLoaded", function(){
   const player2Attack = document.getElementById('player2Attack')
 
   /*----------------------------- Event Listeners -----------------------------*/
-  
+
   startButton.addEventListener("click", function(){
     startScreen.style.display = "none"
     buttonSection.style.display = "flex"
     startGame()
     allowInput()
   })
+
   roundStartButton.addEventListener("click", function(){
     startRound()
   })
+
   resetButton.addEventListener("click", resetGame)
-
-
   attackButton1.addEventListener('click', handlePlayer1Click)
   document.addEventListener('keydown', function(event){
     if (event.code === 'Space'){
@@ -70,6 +70,7 @@ document.addEventListener("DOMContentLoaded", function(){
     
     }
   })
+
   attackButton2.addEventListener('click', handlePlayer2Click)
   //Add keyboard key functionality in place of mouse click
   document.addEventListener('keydown', function(event){
@@ -82,20 +83,20 @@ document.addEventListener("DOMContentLoaded", function(){
   function startGame () {
     startRound()
   }
-  
+
   function playSong(){
     songs[songsIndex].audio.play()
   }
-  
+
   function stopSong() {
     songs[songsIndex].audio.pause()
   }
-  
+
   function startRound() {
     startRoundTimerEl.textContent = `Round ${round}`
     startTimer()
   }
-  
+
   function startTimer() {
     const endTime = Date.now() + 4000
     timerIntervalId = setInterval(() => {
@@ -108,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function(){
       }
     }, 1000)
   }
-  
+
   function renderMessage(message){
     const messageElem = document.getElementById("win-message")
     messageElem.textContent = message
@@ -117,12 +118,14 @@ document.addEventListener("DOMContentLoaded", function(){
       messageElem.classList.add("hidden")
     }, 5000)
   }
+
   function nextRound(){
     round++
     if (round <= numRounds){
       endRound()
     } 
   }
+
   function endRound() {
     // stop song disable player input
     denyInput()
@@ -132,12 +135,14 @@ document.addEventListener("DOMContentLoaded", function(){
     roundStartButton.disabled = false
     resetButton.disabled = false
   }
+
   function turnOnButtons(){
     const buttons = document.querySelectorAll('button')
     buttons.forEach(button =>{
     button.disabled = false
     })
   }
+
   function resetGame(){
     //reset variables
     loserElem.textContent = originalLoserElem
@@ -154,20 +159,20 @@ document.addEventListener("DOMContentLoaded", function(){
     player1Attack.textContent = ""
     player2Attack.textContent = ""
   }
-  //in order for the songs to replay sequentially when the game is reset the songs start time will have to be reset using the currentTime value for the audio.
+
+//in order for the songs to replay sequentially when the game is reset the songs start time will have to be reset using the currentTime value for the audio.
   function resetSongStartTime(){
     songs.forEach((song) => {
       song.audio.currentTime = 0
     })
   }
+
   function checkWinner(){
     if (player1Score >= winningScore) {
-      console.log("Player 1 has won!")
       winnerElem.textContent = "Player 1 has won!"
       loserElem.textContent = "Player 2 is the loser."
       endGame()
     } else if (player2Score >= winningScore){
-      console.log("Player 2 has won!")
       winnerElem.textContent = "Player 2 has won!"
       loserElem.textContent = "Player 1 is the loser."
       endGame()
@@ -176,6 +181,7 @@ document.addEventListener("DOMContentLoaded", function(){
       return
     }
   }
+
   function denyInput(){
     // disable all buttons besides reset button
     const buttons = document.querySelectorAll('button')
@@ -185,21 +191,21 @@ document.addEventListener("DOMContentLoaded", function(){
       }
     })
   }
+
   function allowInput() {
     const buttons = document.querySelectorAll('button')
     buttons.forEach(button => {
     button.disabled = false
     })
   }
-  
+
   let gameEnd = false
   function endGame(){
     gameEnd = true
     denyInput()
     resetButton.disabled = false
   }
-  // let audio
-  
+
   function changeSong() {
     if (songs[songsIndex].audio) {
       songs[songsIndex].audio.pause()
@@ -208,10 +214,11 @@ document.addEventListener("DOMContentLoaded", function(){
       playSong()
     }
   }
-  
+
   function makeAnimationGo() {
     header.classList.add('animate__animated', "animate__bounce")
   }
+
   let player1Clicked = false
   let player2Clicked = false
   function handlePlayer1Click(){
@@ -244,6 +251,7 @@ document.addEventListener("DOMContentLoaded", function(){
       }
     } 
   }
+
   function handlePlayer2Click(){
     if (!player2Clicked){
       player2Clicked = true
@@ -263,7 +271,6 @@ document.addEventListener("DOMContentLoaded", function(){
           player1ScoreDisplay.textContent = player1Score.toString()
         } else if (difference2 < difference1) {
           player2Score++
-          console.log('player 2 wins!')
           player2ScoreDisplay.textContent = player2Score.toString()
           player2Attack.textContent = parseInt("Difference :", difference2, "Input time :", user2Time, `Player 2 wins the round!`)
         
@@ -276,6 +283,7 @@ document.addEventListener("DOMContentLoaded", function(){
       }
     }
   }
+
   function playRandom() {
     // change song for the start of the round
     if (round > 0){
