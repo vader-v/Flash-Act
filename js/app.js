@@ -57,11 +57,14 @@ document.addEventListener("DOMContentLoaded", function(){
     startRound()
   })
   resetButton.addEventListener("click", resetGame)
+
+
   attackButton1.addEventListener('click', handlePlayer1Click)
   document.addEventListener('keydown', function(event){
     if (event.code === 'Space'){
       event.preventDefault()
       attackButton1.click()
+    
     }
   })
   attackButton2.addEventListener('click', handlePlayer2Click)
@@ -206,9 +209,9 @@ document.addEventListener("DOMContentLoaded", function(){
   }
   let player1Clicked = false
   let player2Clicked = false
-
   function handlePlayer1Click(){
     if (!player1Clicked){
+      
       player1Clicked = true
       let player1ScoreString = player1ScoreDisplay.textContent
       let player2ScoreString = player2ScoreDisplay.textContent
@@ -220,6 +223,7 @@ document.addEventListener("DOMContentLoaded", function(){
       console.log(`Player 1 input time: ${user1Time}`)
       console.log(`Song end time: ${songEndTime}`)
       console.log(`Difference: ${difference1}`)
+      player1Attack.textContent = difference1, user1Time
       if (player2Clicked){
         if (difference1 < difference2){
           player1Score++
@@ -253,17 +257,20 @@ document.addEventListener("DOMContentLoaded", function(){
       console.log(`Player 2 input time: ${user2Time}`)
       console.log(`Song end time: ${songEndTime}`)
       console.log(`Difference: ${difference2}`)
+      player2Attack.textContent = difference2, user2Time
       attackButton2.disabled = false
       attackButton1.disabled = false
       if (player1Clicked){
         if (difference1 < difference2){
           player1Score++
           console.log('Player 1 wins!')
+          player1Attack.textContent = difference1, user1Time, `Player 1 wins the round!`
           player1ScoreDisplay.textContent = player1Score.toString()
           console.log("player 1 score:", player1Score)
         } else if (difference2 < difference1) {
           player2Score++
           console.log('player 2 wins!')
+          player2Attack.textContent = difference2, user2Time, `Player 2 wins the round!`
           player2ScoreDisplay.textContent = player2Score.toString()
           console.log("player 2 score:", player2Score)
         } else if (player1Score || player2Score >= 3){

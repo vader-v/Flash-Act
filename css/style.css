@@ -14,8 +14,16 @@
   font-size: 1.5rem;
   cursor: pointer;
 }
-
 #start-button:hover {
+  background-color: #444;
+}
+#attack-buttons:hover {
+  background-color: #444;
+}
+#round-start-button:hover {
+  background-color: #444;
+}
+#reset-button:hover {
   background-color: #444;
 }
 
@@ -35,11 +43,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
+  gap: 1rem;
   margin-top: 2rem;
 }
 .game-board #timer {
   margin-bottom: 1rem;
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 .main-container {
@@ -112,7 +122,6 @@
   cursor: pointer;
   margin-right: 1rem;
 }
-
 #reset-button {
   background-color: #777;
   color: white;
