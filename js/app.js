@@ -226,13 +226,12 @@ document.addEventListener("DOMContentLoaded", function(){
       player1ScoreDisplay.textContent = player1Score.toString()
       const user1Time = Date.now()
       difference1 = Math.abs(songEndTime - user1Time)
-      player1Attack.textContent = difference1, user1Time
+      player1Attack.textContent = `Player 1 Difference ${difference1}`
       if (player2Clicked){
         if (difference1 < difference2){
           player1Score++
           player1ScoreDisplay.textContent =  player1Score.toString()
           player1Attack.textContent = difference1.toString(), user1Time.toString(), `Player 1 wins the round!`
-        
         } else if (difference2 < difference1) {
           player2Score++
           
@@ -256,7 +255,7 @@ document.addEventListener("DOMContentLoaded", function(){
       player2ScoreDisplay.textContent = player2Score.toString()
       const user2Time = Date.now()
       difference2 = Math.abs(songEndTime - user2Time)
-      player2Attack.textContent = difference2, user2Time
+      player2Attack.textContent = `Player 2 Difference ${difference2}`
       attackButton2.disabled = false
       attackButton1.disabled = false
       if (player1Clicked){
