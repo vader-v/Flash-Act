@@ -35,7 +35,8 @@ Google. (n.d.). Google Search Engine. https://www.google.com/
 - Snow https://soundcloud.com/sterlingbidler/anna-pest-x-sterling-bidler-snow?si=d90938d783aa46a5b3cbc13746d009b1&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing
 - Honey and Bleach https://soundcloud.com/sterlingbidler/honey-and-bleach?si=d90938d783aa46a5b3cbc13746d009b1&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing
 - Stress Communication https://soundcloud.com/sterlingbidler/sterling-bidler-stress-communication?si=d90938d783aa46a5b3cbc13746d009b1&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing
-  
+- Princess Interlude https://soundcloud.com/ljstnn/princess-interlude?in=ljstnn/sets/gargoyle-1&si=abc71eb2d1f746f5bbab5f0bf73b320f&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing
+
 ## Icons Used 
 - Player 1 icon: https://icons8.com/icon/lhMu5buYsjBC/genshin-impact
 - Player 2 icon: https://icons8.com/icon/58282/frisk
