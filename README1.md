@@ -8,6 +8,8 @@
 How To Play
 To play Flash-Act, you will need two players and a device with access to the internet. Here are the steps the game will take you through:
 
+- Player 1 input: Spacebar
+- Player 2 input: K
 - Open the Flash-Act game in your browser.
 - Choose player 1 or 2 between users
 - Click start game to start the countdown
