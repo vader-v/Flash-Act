@@ -62,20 +62,21 @@
 
 .player-container {
   display: flex;
+  flex-direction: row;
 }
-.player-container {
+#player {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
 }
 .player {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 200px;
+  width: 50%;
   height: 200px;
   background-color: #eee;
-  margin: 1rem;
+  margin: 0 10px;
   border: 2px solid #FF8C00;
 }
 .player button {
@@ -152,4 +153,10 @@
 }
 body {
   background-color: #4682B4;
+}
+#player1Attack, #player2Attack {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 20px;
+  text-align: center;
 }

@@ -48,11 +48,11 @@ document.addEventListener("DOMContentLoaded", function(){
   let originalLoserElem = loserElem.textContent
   const player1Attack = document.getElementById('player1Attack')
   const player2Attack = document.getElementById('player2Attack')
+
   /*----------------------------- Event Listeners -----------------------------*/
   
   startButton.addEventListener("click", function(){
     startScreen.style.display = "none"
-    gameBoard.style.display = "flex"
     buttonSection.style.display = "flex"
     startGame()
     allowInput()
@@ -226,21 +226,16 @@ document.addEventListener("DOMContentLoaded", function(){
       player1ScoreDisplay.textContent = player1Score.toString()
       const user1Time = Date.now()
       difference1 = Math.abs(songEndTime - user1Time)
-      console.log(`Player 1 input time: ${user1Time}`)
-      console.log(`Song end time: ${songEndTime}`)
-      console.log(`Difference: ${difference1}`)
       player1Attack.textContent = difference1, user1Time
       if (player2Clicked){
         if (difference1 < difference2){
           player1Score++
-          console.log('Player 1 wins!')
           player1ScoreDisplay.textContent =  player1Score.toString()
-          player1Attack.textContent = difference1, user1Time, `Player 1 wins the round!`
-          console.log("Player 1 score:",player1Score)
+          player1Attack.textContent = difference1.toString(), user1Time.toString(), `Player 1 wins the round!`
+        
         } else if (difference2 < difference1) {
           player2Score++
-          console.log("player 2 score:", player2Score)
-          console.log('Player 2 wins!')
+          
           player2ScoreDisplay.textContent = player2Score.toString()
           attackButton1.disabled = false
           attackButton2.disabled = false
@@ -261,25 +256,19 @@ document.addEventListener("DOMContentLoaded", function(){
       player2ScoreDisplay.textContent = player2Score.toString()
       const user2Time = Date.now()
       difference2 = Math.abs(songEndTime - user2Time)
-      console.log(`Player 2 input time: ${user2Time}`)
-      console.log(`Song end time: ${songEndTime}`)
-      console.log(`Difference: ${difference2}`)
       player2Attack.textContent = difference2, user2Time
       attackButton2.disabled = false
       attackButton1.disabled = false
       if (player1Clicked){
         if (difference1 < difference2){
           player1Score++
-          console.log('Player 1 wins!')
           player1ScoreDisplay.textContent = player1Score.toString()
-          console.log("player 1 score:", player1Score)
-          
         } else if (difference2 < difference1) {
           player2Score++
           console.log('player 2 wins!')
           player2ScoreDisplay.textContent = player2Score.toString()
           player2Attack.textContent = parseInt("Difference :", difference2, "Input time :", user2Time, `Player 2 wins the round!`)
-          console.log("player 2 score:", player2Score)
+        
         } else if (player1Score || player2Score >= 3){
           endGame()
         }
