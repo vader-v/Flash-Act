@@ -17,6 +17,10 @@ To play Flash-Act, you will need two players and a device with access to the int
 - The player with the fastest reaction time scores a point.
 - Repeat steps 3-7 until a winner is determined.
 
+# Future updates
+- Add extra player animations to show when each player inputs
+- Implement ute button to cancel all sound output
+- Add an image to react to for core game mechanic instead of listening to the end of the song for accessibility 
 
 # Technologies Used
 Flash-Act is a JavaScript, HTML, and CSS based game. The game relies on the Web Audio API to play the song and measure the player's reaction time.
