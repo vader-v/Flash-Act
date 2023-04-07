@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function(){
   /*------------------------ Cached Element References ------------------------*/
   
   const startScreen = document.getElementById("start-screen")
-  const gameBoard = document.getElementById("gameboard")
   const buttonSection = document.getElementById("buttonSection")
   const startRoundTimerEl = document.getElementById('timer')
   let header = document.querySelector('h1')
