@@ -29,18 +29,20 @@ document.addEventListener("DOMContentLoaded", function(){
   let timerIntervalId
   let difference1, difference2
   /*------------------------ Cached Element References ------------------------*/
+  // let button = document.querySelector('button')
+  // const startScreen = document.getElementById("start-screen")
+  // const gameBoard = document.getElementById("gameboard")
   const startRoundTimerEl = document.getElementById('timer')
   let header = document.querySelector('h1')
-  let button = document.querySelector('button')
-  const startScreen = document.getElementById("start-screen")
   const startButton = document.getElementById("start-button")
   const roundStartButton = document.getElementById("round-start-button")
   const attackButton1 = document.getElementById('attack1')
   const attackButton2 = document.getElementById('attack2')
   const resetButton = document.getElementById("reset-button")
-  const gameBoard = document.getElementById("gameboard")
   const winnerElem = document.querySelector("#win-message")
   const loserElem = document.querySelector("#loss-message")
+  let originalWinnerElem = winnerElem.textContent
+  let originalLoserElem = loserElem.textContent
   /*----------------------------- Event Listeners -----------------------------*/
   
   startButton.addEventListener("click", function(){
@@ -120,18 +122,25 @@ document.addEventListener("DOMContentLoaded", function(){
     roundStartButton.disabled = false
     resetButton.disabled = false
   }
+  function turnOnButtons(){
+    const buttons = document.querySelectorAll('button')
+    buttons.forEach(button =>{
+    button.disabled = false
+    })
+  }
   function resetGame(){
     //reset variables
+    loserElem.textContent = originalLoserElem
+    winnerElem.textContent = originalWinnerElem
     player1Score = 0
     player2Score = 0
     round = 1
     songsIndex = 0
     resetSongStartTime()
     // reset display
+    turnOnButtons()
     player1ScoreDisplay.textContent = "0"
     player2ScoreDisplay.textContent = "0"
-    winnerElem.style.display = "none"
-    loserElem.style.display = "none"
   }
   //in order for the songs to replay sequentially when the game is reset the songs start time will have to be reset using the currentTime value for the audio.
   function resetSongStartTime(){
@@ -266,7 +275,7 @@ document.addEventListener("DOMContentLoaded", function(){
     // change song for the start of the round
     if (round > 0){
       // declare random num 
-      const randomNumber = Math.floor(Math.random() * 3000) + 6000
+      const randomNumber = Math.floor(Math.random() * 3000) + 1000
       // play song based on what round it is
       let songStartTime
       changeSong(songs[songsIndex].audio)
