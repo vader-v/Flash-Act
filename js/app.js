@@ -5,7 +5,8 @@ import {
   snow,
   warField,
   hAndB,
-  stressFilled
+  stressFilled,
+  princess
 } from "./audio.js"
 
 document.addEventListener("DOMContentLoaded", function(){
@@ -13,7 +14,8 @@ document.addEventListener("DOMContentLoaded", function(){
     {title: "Snow", audio: snow, round: 1},
     {title: "Warfield", audio: warField, round: 2},
     {title: "Honey and Bleach", audio: hAndB, round: 3},
-    {title: "Stress Filled", audio: stressFilled, round: 4}
+    {title: "Stress Filled", audio: stressFilled, round: 4},
+    {title: "Princess", audio: princess, round: 5}
   ]
   const numRounds = 4
   const winningScore = 3
@@ -291,7 +293,7 @@ document.addEventListener("DOMContentLoaded", function(){
     // change song for the start of the round
     if (round > 0){
       // declare random num 
-      const randomNumber = Math.floor(Math.random() * 3000) + 1000
+      const randomNumber = Math.floor(Math.random() * 3000) + 6000
       // play song based on what round it is
       let songStartTime
       changeSong(songs[songsIndex].audio)
