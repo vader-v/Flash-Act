@@ -1,17 +1,21 @@
 # Flash-Act
 # Reaction time based 1v1 game
 
-# Play my Game [here](https://flash-act.netlify.app/)
-![Alt text](./assets/images/2023-04-07%20(3).png)
-![Alt text](./assets/images/2023-04-07%20(2).png)
 
 ## Flash-Act is a challenging multiplayer JavaScript game where you test your reaction time against your friends. The goal is simple: be the first to hit a button as close as possible to the end of a song. The player with the fastest reaction time scores a point, and the game will continue for multiple rounds until a winner is determined.
 
-How To Play
-To play Flash-Act, you will need two players and a device with access to the internet. Here are the steps the game will take you through:
+## Play my Game [here](https://flash-act.netlify.app/)
 
+![Alt text](./assets/images/2023-04-07%20(3).png)
+![Alt text](./assets/images/2023-04-07%20(2).png)
+
+## How To Play
+To play Flash-Act, you will need two players and a device with access to the internet.
+
+### Controls
 - Player 1 input: Spacebar
 - Player 2 input: K
+
 - Open the Flash-Act game in your browser.
 - Choose player 1 or 2 between users
 - Click start game to start the countdown
@@ -48,6 +52,4 @@ Google. (n.d.). Google Search Engine. https://www.google.com/
 ## Icons Used 
 - Player 1 icon: https://icons8.com/icon/lhMu5buYsjBC/genshin-impact
 - Player 2 icon: https://icons8.com/icon/58282/frisk
-
-two inputs, one kill, one win, one loss....
 
