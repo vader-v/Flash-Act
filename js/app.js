@@ -34,7 +34,6 @@ import {
   const startScreen = document.getElementById("start-screen")
   const buttonSection = document.getElementById("buttonSection")
   const startRoundTimerEl = document.getElementById('timer')
-  let header = document.querySelector('h1')
   const startButton = document.getElementById("start-button")
   const roundStartButton = document.getElementById("round-start-button")
   const attackButton1 = document.getElementById('attack1')
@@ -198,9 +197,8 @@ import {
     })
   }
 
-  let gameEnd = false
+
   function endGame(){
-    gameEnd = true
     denyInput()
     resetButton.disabled = false
   }
@@ -213,10 +211,6 @@ import {
       playSong()
     }
   }
-
-  // function makeAnimationGo() {
-  //   header.classList.add('animate__animated', "animate__bounce")
-  // }
 
   let player1Clicked = false
   let player2Clicked = false
@@ -289,14 +283,10 @@ import {
       // declare random num 
       const randomNumber = Math.floor(Math.random() * 3000) + 6000
       // play song based on what round it is
-      let songStartTime
       changeSong(songs[songsIndex].audio)
-      // record start time of song playing
-      songStartTime = Date.now()
       // set the timeout function to pause based on random delay
       setTimeout(() => {
         stopSong()
-        
         songEndTime = Date.now()
         attackButton1.disabled = false
         attackButton2.disabled = false
