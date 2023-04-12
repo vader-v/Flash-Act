@@ -9,7 +9,6 @@ import {
   princess
 } from "./audio.js"
 
-document.addEventListener("DOMContentLoaded", function(){
   const songs = [
     {title: "Snow", audio: snow, round: 1},
     {title: "Warfield", audio: warField, round: 2},
@@ -215,9 +214,9 @@ document.addEventListener("DOMContentLoaded", function(){
     }
   }
 
-  function makeAnimationGo() {
-    header.classList.add('animate__animated', "animate__bounce")
-  }
+  // function makeAnimationGo() {
+  //   header.classList.add('animate__animated', "animate__bounce")
+  // }
 
   let player1Clicked = false
   let player2Clicked = false
@@ -305,4 +304,3 @@ document.addEventListener("DOMContentLoaded", function(){
   }
 }
 
-})
