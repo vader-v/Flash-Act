@@ -29,34 +29,57 @@
                 <p>Hover to see instructions!</p>
             </div>
                     <div id="hidden">
-                        1 To start, press the Play Game button.
-                        2 Each player will choose a response key to attack the other player upon the end time of the song played for each round. 
-                        Player 1 input: Spacebar 
-                        Player 2 input: K.  
-                        3 The players should watch the countdown timer and prepare to respond as close to the songs end as possible
-                        4 When the song ends, both players hit their buttons
-                        5 The game will calculate the reaction times of each player, and display their results.
-                        6 The player with the fastest reaction time scores a point.
-                        Repeat steps 2 - 6 until a winner is determined.</div>
+                        <ul>
+                            <li>
+                                Player 1 input: Spacebar 
+                            </li>
+                            <li>
+                                Player 2 input: K.  
+                            </li>
+                        </ul>
+                        <ol>
+                            <li>
+                                To start, press the Play Game button.
+                            </li>
+                                Each player will choose a response key to attack the other player upon the end time of the song played for each round.
+                            <li>
+                                The players should watch the countdown timer and prepare to respond as close to the songs end as possible
+
+                            </li>
+                            <li>
+
+                                When the song ends, both players hit their buttons
+                            </li>
+                            
+                            <li>
+
+                                The game will calculate the reaction times of each player, and display their results.
+                            </li>
+                            <li>
+
+                            The player with the fastest reaction time scores a point.
+                            Repeat steps 1 - 5 until a winner is determined.
+
+                            </li>
+                        </ol>
+                    </div>
                 </div>
-                    <div class="game-board">
-                    <div id="win-message"></div>
-                    <div id="loss-message"></div>
-            <h2 id="timer"></h2>
-            
-        </div> 
-        <div id="player">
-            
-            <div class="player player1">
+            <div class="game-board">
+                <div id="win-message"></div>
+                <div id="loss-message"></div>
+                <h2 id="timer"></h2>
+            </div> 
+            <div id="player">
+                <div class="player player1">
                 <img src="./assets/images/icons8-genshin-impact-48.png" alt="icons8-genshin-impact-48">
                 <div class="player-name">Player 1 </div>
                 
                 <div id="player1ScoreDisplay"></div>
                 <button id="attack1">Attack (Space)</button>
-            </div>
-            <div id="player1Attack"></div>
-            <div id="player2Attack"></div>
-            <div class="player player2">
+                </div>
+                <div id="player1Attack"></div>
+                <div id="player2Attack"></div>
+                <div class="player player2">
                 <img src="./assets/images/icons8-frisk-50.png" alt="icons8-frisk-50">
                 <div class="player-name">Player 2 </div>
                 
@@ -65,14 +88,14 @@
             </div>
         </div>
         <div id="buttonSection">
-        <button id="round-start-button">
-            Round Start
-        </button>
-        <button id="reset-button">
-            Reset Game
-        </button>
-    </div>
-</main>
+            <button id="round-start-button">
+                Round Start
+            </button>
+            <button id="reset-button">
+                Reset Game
+            </button>
+        </div>
+    </main>
 </body>
 
 </html>
