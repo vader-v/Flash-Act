@@ -9,7 +9,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+  justify-content: center;
+  height: 100%;
 }
 #start-button {
   background-color: #333;
@@ -40,7 +41,9 @@
   text-align: center;
   margin-bottom: 2rem;
 }
-
+#start-screen #instructions{
+  /* add stuff here to make it parallel */
+}
 #start-game:focus ~ #start-screen {
   display: none;
 }
@@ -189,11 +192,10 @@ body {
 #hidden {
   display: none;
   position: absolute;
-  top: 100px;
+  top: 0px;
   left: 0;
   width: 400px;
   height: 300px;
-  overflow: auto;
   color: white;
   background-color: #333;
   border: 1px solid white;
