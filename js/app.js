@@ -30,7 +30,7 @@ function toggleMute() {
   });
 
   // Update the mute button text
-  muteButton.innerHTML = isMuted ? 'Unmute' : 'Mute';
+  muteButton.innerHTML = isMuted ? '🔈' : '🔊';
 }
 
 // Add click event listener to the mute button
