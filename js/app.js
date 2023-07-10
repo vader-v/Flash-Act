@@ -9,7 +9,34 @@ import {
   princess
 } from "./audio.js"
 
-  const songs = [
+
+// Get the mute button element
+const muteButton = document.querySelector('.mute-btn');
+
+// Initialize the mute state
+let isMuted = false;
+
+// Array to store the audio elements
+const audioElements = [stressFilled, warField, hAndB, snow, princess];
+
+// Function to toggle mute
+function toggleMute() {
+  // Toggle the mute state
+  isMuted = !isMuted;
+
+  // Toggle the mute property for each audio element
+  audioElements.forEach((audio) => {
+    audio.muted = isMuted;
+  });
+
+  // Update the mute button text
+  muteButton.innerHTML = isMuted ? 'Unmute' : 'Mute';
+}
+
+// Add click event listener to the mute button
+muteButton.addEventListener('click', toggleMute);
+
+const songs = [
     {title: "Snow", audio: snow, round: 1},
     {title: "Warfield", audio: warField, round: 2},
     {title: "Honey and Bleach", audio: hAndB, round: 3},

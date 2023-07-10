@@ -204,3 +204,12 @@ body {
 #instructions:hover + #hidden {
   display: block;
 }
+
+.mute-btn {
+  padding: 10px;
+  background-color: #293947;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
